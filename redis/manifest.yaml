@@ -63,11 +63,11 @@ spec:
       - name: redis
         image: redis:7.0
         volumeMounts:
-        - name: redis_data
+        - name: redis-data
           mountPath: /data
   volumeClaimTemplates:
   - metadata:
-      name: redis_data
+      name: redis-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "ebs-sc-roboshop"
