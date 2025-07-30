@@ -22,7 +22,9 @@ kind: Secret
 metadata:
   name: payment
   labels:
-    purpose: secrets_reference-here
+    component: payment
+    project: roboshop
+    tier: app
 type: Opaque
 data:
   AMQP_USER: "cm9ib3Nob3A="
