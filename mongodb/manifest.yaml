@@ -4,7 +4,7 @@ metadata:
   name: mongodb-headless
   namespace: roboshop
   labels:
-    purpose: service_demo
+    component: mongodb
     project: roboshop
     tier: database
 spec:
