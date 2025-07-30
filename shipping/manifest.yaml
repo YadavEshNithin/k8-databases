@@ -42,10 +42,10 @@ spec:
           resources:
             requests:
               cpu: "100m"
-              memory: "256"
+              memory: "256Mi"
             limits:
               cpu: "200M"
-              memory: "512"
+              memory: "512Mi"
           envFrom:
             - configMapRef:
                 name: shipping
