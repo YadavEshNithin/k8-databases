@@ -3,7 +3,9 @@ kind: Secret
 metadata:
   name: rabbitmq
   labels:
-    purpose: secrets_reference-here
+    component: rabbitmq
+    project: roboshop
+    tier: database
 type: Opaque
 data:
   RABBITMQ_DEFAULT_USER: cm9ib3Nob3A=
@@ -17,7 +19,7 @@ metadata:
   name: rabbitmq-headless
   namespace: roboshop
   labels:
-    purpose: service_demo
+    component: rabbitmq
     project: roboshop
     tier: database
 spec:
