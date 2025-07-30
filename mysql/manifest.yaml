@@ -78,11 +78,11 @@ spec:
           - secretRef:
               name: mysql
         volumeMounts:
-        - name: mysql_data
+        - name: mysql-data
           mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
-      name: mysql_data
+      name: mysql-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "ebs-sc-roboshop"

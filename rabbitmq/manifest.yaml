@@ -79,11 +79,11 @@ spec:
           - secretRef:
               name: mysql
         volumeMounts:
-        - name: rabbitmq_data
+        - name: rabbitmq-data
           mountPath: /var/lib/rabbitmq
   volumeClaimTemplates:
   - metadata:
-      name: rabbitmq_data
+      name: rabbitmq-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "ebs-sc-roboshop"
