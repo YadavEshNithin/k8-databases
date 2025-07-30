@@ -40,6 +40,13 @@ spec:
       containers:
         - name: cart
           image: yadaveshnithin/cart:v1
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "100M"
+              memory: "256Mi"
           envFrom:
             - configMapRef:
                 name: cart
@@ -65,4 +72,24 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-
+      
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cart-hpa
+  namespace: roboshop
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cart
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 10

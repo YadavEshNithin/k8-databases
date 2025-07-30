@@ -56,6 +56,13 @@ spec:
         - name: payment
           image: yadaveshnithin/payment:v1
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "100M"
+              memory: "256Mi"
           envFrom:
             - configMapRef:
                 name: payment
@@ -84,3 +91,23 @@ spec:
       port: 8080
       targetPort: 8080
 
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: payment-hpa
+  namespace: roboshop
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: payment
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 10
